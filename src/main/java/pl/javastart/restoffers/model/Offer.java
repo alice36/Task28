@@ -17,18 +17,7 @@ public class Offer {
     @JsonIgnore
     private Category category;
 
-//    public Offer(String title, String description, String imageUrl, double price, Category category) {
-//        this.title = title;
-//        this.description = description;
-//        this.imageUrl = imageUrl;
-//        this.price = price;
-//        this.category = category;
-//    }
-//
-//    public Offer() {
-//    }
-
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

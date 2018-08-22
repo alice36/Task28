@@ -6,6 +6,7 @@ import pl.javastart.restoffers.model.Offer;
 import pl.javastart.restoffers.repository.OfferRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/offers")
@@ -39,10 +40,23 @@ public class OfferController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Offer> getOffer(@PathVariable("id") Long id){
-        if (id >= offerRepository.findAll().size())
+
+        Optional<Offer> byId = offerRepository.findById(id);
+        if(byId.isPresent()) {
+            return ResponseEntity.ok(byId.get());
+        } else {
             return ResponseEntity.notFound().build();
-        else
-            return ResponseEntity.ok(offerRepository.findOfferUsingId(id));
+        }
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteOffer(@PathVariable("id") Long id){
+
+        Optional<Offer> byId = offerRepository.findById(id);
+        if(byId.isPresent()) {
+            offerRepository.deleteById(id);
+            return ResponseEntity.ok().build();
+        } else
+            return  ResponseEntity.notFound().build();
     }
 
 }

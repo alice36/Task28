@@ -11,10 +11,7 @@ import java.util.List;
 @Repository
 public interface OfferRepository extends JpaRepository<Offer, Long> {
     @Query("SELECT o from Offer o " +
-            "where o.title like :letter%")
+            "where lower(o.title) like :letter%")
     List<Offer> findOfferByNamePart(@Param("letter") String letter);
 
-    @Query("SELECT o from Offer o " +
-            "where o.id = :letter")
-    Offer findOfferUsingId(@Param("letter") Long id);
 }

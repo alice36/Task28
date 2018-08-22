@@ -13,14 +13,6 @@ public class Category {
     @OneToMany(mappedBy = "category", fetch = FetchType.EAGER)
     private List<Offer> offers;
 
-    public Category(String name, String description) {
-        this.name = name;
-        this.description = description;
-    }
-
-    public Category() {
-    }
-
     public Long getId() {
         return id;
     }
